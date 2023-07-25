@@ -1,5 +1,4 @@
 import sys
-import time
 
 import pygame
 
@@ -14,17 +13,42 @@ CELL_SIZE = 50
 SCREEN_WIDTH = game.maze.grid.shape[1] * CELL_SIZE
 SCREEN_HEIGHT = game.maze.grid.shape[0] * CELL_SIZE
 FPS = 60
-DELAY = 0.08
+MOVE_DELAY = 80
+BANNER_DELAY = 500
 FONT = 'DejaVu Sans Mono, Segoe UI Symbol'
 FONT_SIZE = 23
 
 pygame.init()
-screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption(TITLE)
 clock = pygame.time.Clock()
 
+screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 render = Render(screen, CELL_SIZE, pygame.font.SysFont(FONT, FONT_SIZE))
-oldRect = render.render_game(game, game.level.start_state, game.level.end_state, game.level.start_state)
+
+
+def wait_keypress():
+    while True:
+        event = pygame.event.wait()
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
+        elif event.type == pygame.KEYDOWN:
+            break
+
+
+render.welcome()
+pygame.display.update()
+pygame.time.wait(BANNER_DELAY)
+pygame.event.clear()
+wait_keypress()
+
+render.banner('level 1', 'warm-up')
+pygame.display.update()
+pygame.time.wait(BANNER_DELAY)
+pygame.event.clear()
+wait_keypress()
+
+oldRect = render.game(game, game.level.start_state, game.level.end_state, game.level.start_state)
 pygame.display.update()
 
 running = True
@@ -38,11 +62,16 @@ while running:
         running = False
     elif game.state == GameState.FAIL:
         game.reset()
-        oldRect = render.render_game(game, game.level.start_state, game.level.end_state, game.level.start_state)
+        oldRect = render.game(game, game.level.start_state, game.level.end_state, game.level.start_state)
         pygame.display.update()
 
     prev = game.player
     key = pygame.key.get_pressed()
+
+    if key[pygame.K_r]:
+        game.fail()
+        continue
+
     if key[pygame.K_UP] + key[pygame.K_DOWN] + key[pygame.K_RIGHT] + key[pygame.K_LEFT] \
             + key[pygame.K_w] + key[pygame.K_s] + key[pygame.K_d] + key[pygame.K_a] == 1:
         if key[pygame.K_UP] or key[pygame.K_w]:
@@ -53,12 +82,12 @@ while running:
             game.move_right()
         if key[pygame.K_LEFT] or key[pygame.K_a]:
             game.move_left()
-        time.sleep(DELAY)
+        pygame.time.wait(MOVE_DELAY)
     else:
         continue
 
-    render.render_cell(game.maze, prev.x, prev.y, game.level.start_state, game.level.end_state)
-    newRect = render.render_player(game.maze, game.player, game.player_state)
+    render.cell(game.maze, prev.x, prev.y, game.level.start_state, game.level.end_state)
+    newRect = render.player(game.maze, game.player, game.player_state)
     pygame.display.update(oldRect)
     pygame.display.update(newRect)
     oldRect = newRect
