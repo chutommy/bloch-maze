@@ -1,5 +1,12 @@
 from app import App
 
-app = App()
-app.display_welcome()
-app.run()
+
+def main():
+    app = App()
+    app.display_welcome()
+    app.run()
+    return 0
+
+
+if __name__ == '__main__':
+    main()
