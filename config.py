@@ -6,7 +6,8 @@ FONT_SIZE = 20
 
 FPS = 60
 MOVE_DELAY = 80
-BANNER_DELAY = 500
+BANNER_DELAY = 300
+FAIL_DELAY = 200
 
 TITLE_TEXT = "BLOCH MAZE"
 CONTROLS_TEXT = "controls:      [w,a,s,d] or [←,↑,↓,→]   "
