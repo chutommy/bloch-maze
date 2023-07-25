@@ -3,6 +3,10 @@ import numpy as np
 from game import Cell
 
 
+def str_to_array(input):
+    return [list(r.strip()) for r in input.strip().split('\n')]
+
+
 class Coor:
     def __init__(self, x, y):
         self.x = x
