@@ -9,18 +9,21 @@ from render import Render
 
 game = Game(levels[0])
 
+TITLE = "Bloch Maze"
 CELL_SIZE = 50
 SCREEN_WIDTH = game.maze.grid.shape[1] * CELL_SIZE
 SCREEN_HEIGHT = game.maze.grid.shape[0] * CELL_SIZE
 FPS = 60
 DELAY = 0.08
+FONT = 'DejaVu Sans Mono, Segoe UI Symbol'
+FONT_SIZE = 23
 
 pygame.init()
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-pygame.display.set_caption("Bloch Maze")
+pygame.display.set_caption(TITLE)
 clock = pygame.time.Clock()
 
-render = Render(screen, CELL_SIZE, pygame.font.SysFont('DejaVu Sans Mono, Segoe UI Symbol', 23))
+render = Render(screen, CELL_SIZE, pygame.font.SysFont(FONT, FONT_SIZE))
 oldRect = render.render_game(game, game.level.start_state, game.level.end_state, game.level.start_state)
 pygame.display.update()
 
