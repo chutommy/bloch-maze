@@ -2,27 +2,20 @@ import sys
 
 import pygame
 
+from config import *
 from game import Game, GameState
 from level import levels
 from render import Render
 
 game = Game(levels[0])
 
-TITLE = "Bloch Maze"
-CELL_SIZE = 50
-SCREEN_WIDTH = game.maze.grid.shape[1] * CELL_SIZE
-SCREEN_HEIGHT = game.maze.grid.shape[0] * CELL_SIZE
-FPS = 60
-MOVE_DELAY = 80
-BANNER_DELAY = 500
-FONT = 'DejaVu Sans Mono, Segoe UI Symbol'
-FONT_SIZE = 23
-
 pygame.init()
 pygame.display.set_caption(TITLE)
 clock = pygame.time.Clock()
 
-screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+width = game.maze.grid.shape[1] * CELL_SIZE
+height = game.maze.grid.shape[0] * CELL_SIZE
+screen = pygame.display.set_mode((width, height))
 render = Render(screen, CELL_SIZE, pygame.font.SysFont(FONT, FONT_SIZE))
 
 
@@ -42,7 +35,7 @@ pygame.time.wait(BANNER_DELAY)
 pygame.event.clear()
 wait_keypress()
 
-render.banner('level 1', 'warm-up')
+render.banner(levels[0].title, levels[0].subtitle)
 pygame.display.update()
 pygame.time.wait(BANNER_DELAY)
 pygame.event.clear()

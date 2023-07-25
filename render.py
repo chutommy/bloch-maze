@@ -1,16 +1,11 @@
 import pygame
 
 from cell import CELL_COLORS
+from config import *
 from maze import Cell
 
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
-CURRENT_STATE_COLOR = (150, 150, 150)
-
-TITLE_TEXT = "BLOCH MAZE"
-CONTROLS_TEXT = "controls:      [w,a,s,d] or [←,↑,↓,→]   "
-NAVIGATION_TEXT = "navigation:    [r]eset / [b]ack / [n]ext"
-CONTINUE_TEXT = "press <any> key to continue"
 
 
 class Render():
@@ -51,7 +46,7 @@ class Render():
     def player(self, maze, player, current_state):
         rect = pygame.Rect(get_rect(player.x, player.y, self.cell_size))
         if maze[player] == Cell.NONE:
-            self.draw_rect(rect, CELL_COLORS[Cell.NONE], current_state, CURRENT_STATE_COLOR)
+            self.draw_rect(rect, CELL_COLORS[Cell.NONE], current_state, BLACK)
         pygame.draw.rect(self.screen, BLACK, rect, 3)
         return rect
 

@@ -3,15 +3,16 @@ from state import State
 
 
 class Level:
-    def __init__(self, title, start_state, end_state, maze):
+    def __init__(self, title, subtitle, start_state, end_state, maze):
         self.title = title
+        self.subtitle = subtitle
         self.maze = maze
         self.start_state = start_state
         self.end_state = end_state
 
 
 levels = [
-    Level('Level 0', State.ZERO, State.PLUS, Maze(str_to_array("""
+    Level('level 0', "warm-up", State.ZERO, State.PLUS, Maze(str_to_array("""
     ...................
     ...................
     ...................
@@ -23,7 +24,7 @@ levels = [
     ...................
     ...................
     """))),
-    Level('Level 1', State.ZERO, State.ZERO, Maze(str_to_array("""
+    Level('level 2', "don't push it", State.ZERO, State.ZERO, Maze(str_to_array("""
     ...................
     ...................
     ...................
