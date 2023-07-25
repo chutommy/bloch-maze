@@ -28,7 +28,7 @@ class Game:
     def fail(self):
         self.state = GameState.FAIL
 
-    def __evaluate(self):
+    def evaluate(self):
         if self.maze[self.player] == Cell.ENTRANCE:
             self.player_state = self.level.start_state
         elif self.maze[self.player] == Cell.EXIT:
@@ -39,20 +39,20 @@ class Game:
         else:
             self.player_state = transition(self.player_state, self.maze[self.player])
 
-    def __move(self, dx, dy):
+    def move(self, dx, dy):
         new_coor = Coor(self.player.x + dx, self.player.y + dy)
         if self.maze[new_coor] != Cell.WALL:
             self.player = new_coor
-            self.__evaluate()
+            self.evaluate()
 
     def move_up(self):
-        self.__move(0, -1)
+        self.move(0, -1)
 
     def move_down(self):
-        self.__move(0, +1)
+        self.move(0, +1)
 
     def move_left(self):
-        self.__move(-1, 0)
+        self.move(-1, 0)
 
     def move_right(self):
-        self.__move(+1, 0)
+        self.move(+1, 0)
