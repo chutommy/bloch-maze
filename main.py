@@ -20,7 +20,7 @@ screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("Bloch Maze")
 clock = pygame.time.Clock()
 
-render = Render(screen, CELL_SIZE)
+render = Render(screen, CELL_SIZE, pygame.font.SysFont('DejaVu Sans Mono, Segoe UI Symbol', 23))
 oldRect = render.render_game(game, game.level.start_state, game.level.end_state, game.level.start_state)
 pygame.display.update()
 

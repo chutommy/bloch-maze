@@ -9,13 +9,13 @@ CURRENT_STATE_COLOR = (150, 150, 150)
 
 
 class Render():
-    def __init__(self, screen, cell_size):
+    def __init__(self, screen, cell_size, font):
         self.screen = screen
         self.cell_size = cell_size
+        self.font = font
 
     def __draw_text(self, text, color, center):
-        seguisy50 = pygame.font.Font("seguisym.ttf", 25)
-        text_surface = seguisy50.render(text, True, color)
+        text_surface = self.font.render(text, True, color)
         text_rect = text_surface.get_rect(center=center)
         self.screen.blit(text_surface, text_rect)
 
