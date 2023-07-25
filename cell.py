@@ -12,7 +12,6 @@ class Cell(str, Enum):
     Z_GATE = 'Z'
     H_GATE = 'H'
     S_GATE = 'S'
-    SDG_GATE = 'S†'
     RESET_0_GATE = '0'
     RESET_1_GATE = '1'
 
@@ -28,7 +27,6 @@ CELL_COLORS = {
     Cell.Z_GATE: (255, 102, 102),
     Cell.H_GATE: (255, 153, 0),
     Cell.S_GATE: (204, 153, 255),
-    Cell.SDG_GATE: (153, 102, 204),
     Cell.RESET_0_GATE: (130, 130, 130),
     Cell.RESET_1_GATE: (130, 130, 130),
 }
