@@ -1,7 +1,7 @@
 from enum import Enum, auto
 
 from cell import Cell
-from maze import Coor
+from coor import Coor
 from transition import transition
 
 
