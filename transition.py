@@ -1,6 +1,13 @@
 from cell import Cell
 from state import State
 
+
+def transition(current_state, gate):
+    if gate in TRANSITIONS[current_state]:
+        return TRANSITIONS[current_state][gate]
+    return current_state
+
+
 TRANSITIONS = {
     State.ZERO: {
         Cell.X_GATE: State.ONE,
