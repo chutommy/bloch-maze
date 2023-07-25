@@ -11,6 +11,20 @@ class Level:
         self.end_state = end_state
 
 
+def validate_level(level, dimensions):
+    if not level.title or not level.subtitle \
+            or not level.start_state or not level.end_state \
+            or level.maze.grid.shape != dimensions:
+        raise ValueError('invalid level')
+
+
+def get_levels():
+    dimensions = levels[0].maze.grid.shape
+    for level in levels:
+        validate_level(level, dimensions)
+    return levels, dimensions
+
+
 levels = [
     Level('level 0', "warm-up", State.ZERO, State.PLUS, Maze(str_to_array("""
     ...................

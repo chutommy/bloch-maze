@@ -4,17 +4,16 @@ import pygame
 
 from config import *
 from game import Game, GameState
-from level import levels
+from level import get_levels
 from render import Render
-
-game = Game(levels[0])
 
 pygame.init()
 pygame.display.set_caption(TITLE)
 clock = pygame.time.Clock()
 
-width = game.maze.grid.shape[1] * CELL_SIZE
-height = game.maze.grid.shape[0] * CELL_SIZE
+levels, dimensions = get_levels()
+width = dimensions[1] * CELL_SIZE
+height = dimensions[0] * CELL_SIZE
 screen = pygame.display.set_mode((width, height))
 render = Render(screen, CELL_SIZE, pygame.font.SysFont(FONT, FONT_SIZE))
 
@@ -41,6 +40,7 @@ pygame.time.wait(BANNER_DELAY)
 pygame.event.clear()
 wait_keypress()
 
+game = Game(levels[0])
 oldRect = render.game(game, game.level.start_state, game.level.end_state, game.level.start_state)
 pygame.display.update()
 
@@ -52,7 +52,13 @@ while running:
         if event.type == pygame.QUIT:
             running = False
     if game.state == GameState.SUCCESS:
-        running = False
+        render.banner(f"successfully finished {levels[0].title}", 'well done!')
+        pygame.display.update()
+        wait_keypress()
+
+        game = Game(levels[1])
+        oldRect = render.game(game, game.level.start_state, game.level.end_state, game.level.start_state)
+        pygame.display.update()
     elif game.state == GameState.FAIL:
         game.reset()
         oldRect = render.game(game, game.level.start_state, game.level.end_state, game.level.start_state)
