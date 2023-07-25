@@ -7,6 +7,7 @@ from transition import transition
 
 class GameState(int, Enum):
     RUNNING = auto()
+    JUMP = auto()
     SUCCESS = auto()
     FAIL = auto()
 
@@ -22,10 +23,13 @@ class Game:
         self.player_state = self.level.start_state
         self.state = GameState.RUNNING
 
-    def success(self):
+    def set_jump(self):
+        self.state = GameState.JUMP
+
+    def set_success(self):
         self.state = GameState.SUCCESS
 
-    def fail(self):
+    def set_fail(self):
         self.state = GameState.FAIL
 
     def evaluate(self):
@@ -33,9 +37,9 @@ class Game:
             self.player_state = self.level.start_state
         elif self.maze[self.player] == Cell.EXIT:
             if self.player_state == self.level.end_state:
-                self.success()
+                self.set_success()
             else:
-                self.fail()
+                self.set_fail()
         else:
             self.player_state = transition(self.player_state, self.maze[self.player])
 
