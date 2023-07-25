@@ -2,7 +2,7 @@ TITLE = "Bloch Maze"
 
 CELL_SIZE = 50
 FONT = 'DejaVu Sans Mono, Segoe UI Symbol'
-FONT_SIZE = 23
+FONT_SIZE = 20
 
 FPS = 60
 MOVE_DELAY = 80
