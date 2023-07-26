@@ -34,41 +34,47 @@ class App:
         self.render.render_welcome()
         self.wait_response()
 
+    def display_end(self):
+        self.render.render_end()
+        self.wait_response(ENDING_DELAY)
+
     def display_current_level_header(self):
         self.render.render_banner(f"level {self.current_level_number}", self.levels[self.current_level_number].title)
         self.wait_response()
 
     def display_current_level_end(self):
-        self.render.render_banner(f"successfully finished level {self.current_level_number}", 'well done!')
+        self.render.render_banner(f"successfully finished level {self.current_level_number}", WELL_DONE_TXT)
         self.wait_response()
 
     def level_up(self):
         self.current_level_number += 1
         if self.current_level_number >= len(self.levels):
             self.current_level_number = len(self.levels) - 1
+            return False
+        return True
 
     def level_down(self):
         self.current_level_number -= 1
         if self.current_level_number <= 0:
             self.current_level_number = 0
+            return False
+        return True
 
     def run_level(self):
         game = Game(self.levels[self.current_level_number])
         self.display_current_level_header()
         prev_rect = self.render.draw_game(game, game.level.start_state)
-        running = True
-        while running:
+        while True:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.exit()
 
             match game.state:
                 case GameState.JUMP:
-                    return
+                    return True
                 case GameState.SUCCESS:
                     self.display_current_level_end()
-                    self.level_up()
-                    return
+                    return self.level_up()
                 case GameState.FAIL:
                     game.__init__(game.level)
                     prev_rect = self.render.draw_game(game, game.level.start_state)
@@ -88,9 +94,12 @@ class App:
         return new_rect
 
     def run(self):
-        self.display_welcome()
         while True:
-            self.run_level()
+            self.display_welcome()
+            while self.run_level():
+                pass
+            self.display_end()
+            self.current_level_number = 1
 
     def handle_keys(self, game, keys):
         if keys[pygame.K_r]:
@@ -125,8 +134,8 @@ class App:
         pygame.quit()
         sys.exit()
 
-    def wait_response(self):
-        pygame.time.wait(BANNER_DELAY)
+    def wait_response(self, duration=BANNER_DELAY):
+        pygame.time.wait(duration)
         pygame.event.clear()
         self.wait_keypress()
 

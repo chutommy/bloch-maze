@@ -11,11 +11,15 @@ FPS = 60
 MOVE_DELAY = 80
 BANNER_DELAY = 300
 FAIL_DELAY = 200
+ENDING_DELAY = 200
 
 TITLE_TEXT = "BLOCH MAZE"
 CONTROLS_TEXT = "controls:      [w,a,s,d] or [←,↑,↓,→]       "
 NAVIGATION_TEXT = "navigation:    [r]eset / [p]revious / [n]ext"
 CONTINUE_TEXT = "press <any> key to continue"
+WELL_DONE_TXT = 'well done!'
+END_TEXT = "DEAD END"
+RESTART_TEXT = "return to start"
 
 SYMBOL_NONE = '.'
 SYMBOL_WALL = 'w'

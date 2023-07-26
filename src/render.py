@@ -65,6 +65,15 @@ class Render:
         self.draw_text(CONTINUE_TEXT, BLACK, (0.5 * w, 0.75 * h))
         pygame.display.update()
 
+    def render_end(self):
+        w, h = self.screen.get_width(), self.screen.get_height()
+        self.screen.fill(WHITE)
+        self.draw_text(END_TEXT, BLACK, (0.5 * w, 0.25 * h), True)
+        self.draw_text(RESTART_TEXT, BLACK, (0.5 * w, 0.45 * h))
+        # self.draw_text(NAVIGATION_TEXT, BLACK, (0.5 * w, 0.55 * h))
+        self.draw_text(CONTINUE_TEXT, BLACK, (0.5 * w, 0.75 * h))
+        pygame.display.update()
+
     def render_banner(self, header, title):
         w, h = self.screen.get_width(), self.screen.get_height()
         self.screen.fill(WHITE)
