@@ -9,13 +9,15 @@ WHITE = (255, 255, 255)
 
 
 class Render():
-    def __init__(self, screen, cell_size, font):
+    def __init__(self, screen, cell_size, font, bfont):
         self.screen = screen
         self.cell_size = cell_size
         self.font = font
+        self.bfont = bfont
 
-    def draw_text(self, text, color, center):
-        text_surface = self.font.render(text, True, color)
+    def draw_text(self, text, color, center, bold=False):
+        font = self.font if not bold else self.bfont
+        text_surface = font.render(text, True, color)
         text_rect = text_surface.get_rect(center=center)
         self.screen.blit(text_surface, text_rect)
 
@@ -58,7 +60,7 @@ class Render():
     def welcome(self):
         w, h = self.screen.get_width(), self.screen.get_height()
         self.screen.fill(WHITE)
-        self.draw_text(TITLE_TEXT, BLACK, (0.5 * w, 0.25 * h))
+        self.draw_text(TITLE_TEXT, BLACK, (0.5 * w, 0.25 * h), True)
         self.draw_text(CONTROLS_TEXT, BLACK, (0.5 * w, 0.45 * h))
         self.draw_text(NAVIGATION_TEXT, BLACK, (0.5 * w, 0.55 * h))
         self.draw_text(CONTINUE_TEXT, BLACK, (0.5 * w, 0.75 * h))
@@ -66,7 +68,7 @@ class Render():
     def banner(self, title, subtitle):
         w, h = self.screen.get_width(), self.screen.get_height()
         self.screen.fill(WHITE)
-        self.draw_text(title, (0, 0, 0), (0.5 * w, 0.25 * h))
+        self.draw_text(title, (0, 0, 0), (0.5 * w, 0.25 * h), True)
         self.draw_text(subtitle, (0, 0, 0), (0.5 * w, 0.4 * h))
         self.draw_text(CONTINUE_TEXT, (0, 0, 0), (0.5 * w, 0.75 * h))
 

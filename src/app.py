@@ -17,10 +17,13 @@ class App():
         self.levels, dimensions = get_levels()
         self.current_level_number = 1
 
+        font = pygame.font.Font(FONT_PATH, FONT_SIZE)
+        bfont = pygame.font.Font(BOLD_FONT_PATH, BOLD_FONT_SIZE)
+
         width = dimensions[1] * CELL_SIZE
         height = dimensions[0] * CELL_SIZE
         screen = pygame.display.set_mode((width, height))
-        self.render = Render(screen, CELL_SIZE, pygame.font.SysFont(FONT, FONT_SIZE))
+        self.render = Render(screen, CELL_SIZE, font, bfont)
 
     def display_welcome(self):
         self.render.welcome()
