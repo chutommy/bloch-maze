@@ -1,5 +1,5 @@
 from cell import Cell
-from state import State
+from qstate import QState
 
 
 def transition(current_state, gate):
@@ -10,63 +10,63 @@ def transition(current_state, gate):
 
 
 TRANSITIONS = {
-    State.ZERO: {
-        Cell.X_GATE: State.ONE,
-        Cell.Y_GATE: State.ONE,
-        Cell.Z_GATE: State.ZERO,
-        Cell.H_GATE: State.PLUS,
-        Cell.S_GATE: State.ZERO,
-        Cell.RESET_0_GATE: State.ZERO,
-        Cell.RESET_1_GATE: State.ONE,
+    QState.ZERO: {
+        Cell.X_GATE: QState.ONE,
+        Cell.Y_GATE: QState.ONE,
+        Cell.Z_GATE: QState.ZERO,
+        Cell.H_GATE: QState.PLUS,
+        Cell.S_GATE: QState.ZERO,
+        Cell.RESET_0_GATE: QState.ZERO,
+        Cell.RESET_1_GATE: QState.ONE,
     },
 
-    State.ONE: {
-        Cell.X_GATE: State.ZERO,
-        Cell.Y_GATE: State.ZERO,
-        Cell.Z_GATE: State.ONE,
-        Cell.H_GATE: State.MINUS,
-        Cell.S_GATE: State.ONE,
-        Cell.RESET_0_GATE: State.ZERO,
-        Cell.RESET_1_GATE: State.ONE,
+    QState.ONE: {
+        Cell.X_GATE: QState.ZERO,
+        Cell.Y_GATE: QState.ZERO,
+        Cell.Z_GATE: QState.ONE,
+        Cell.H_GATE: QState.MINUS,
+        Cell.S_GATE: QState.ONE,
+        Cell.RESET_0_GATE: QState.ZERO,
+        Cell.RESET_1_GATE: QState.ONE,
     },
 
-    State.PLUS: {
-        Cell.X_GATE: State.PLUS,
-        Cell.Y_GATE: State.MINUS,
-        Cell.Z_GATE: State.MINUS,
-        Cell.H_GATE: State.ZERO,
-        Cell.S_GATE: State.Y_PLUS,
-        Cell.RESET_0_GATE: State.ZERO,
-        Cell.RESET_1_GATE: State.ONE,
+    QState.PLUS: {
+        Cell.X_GATE: QState.PLUS,
+        Cell.Y_GATE: QState.MINUS,
+        Cell.Z_GATE: QState.MINUS,
+        Cell.H_GATE: QState.ZERO,
+        Cell.S_GATE: QState.Y_PLUS,
+        Cell.RESET_0_GATE: QState.ZERO,
+        Cell.RESET_1_GATE: QState.ONE,
     },
 
-    State.MINUS: {
-        Cell.X_GATE: State.MINUS,
-        Cell.Y_GATE: State.PLUS,
-        Cell.Z_GATE: State.PLUS,
-        Cell.H_GATE: State.ONE,
-        Cell.S_GATE: State.Y_MINUS,
-        Cell.RESET_0_GATE: State.ZERO,
-        Cell.RESET_1_GATE: State.ONE,
+    QState.MINUS: {
+        Cell.X_GATE: QState.MINUS,
+        Cell.Y_GATE: QState.PLUS,
+        Cell.Z_GATE: QState.PLUS,
+        Cell.H_GATE: QState.ONE,
+        Cell.S_GATE: QState.Y_MINUS,
+        Cell.RESET_0_GATE: QState.ZERO,
+        Cell.RESET_1_GATE: QState.ONE,
     },
 
-    State.Y_PLUS: {
-        Cell.X_GATE: State.Y_MINUS,
-        Cell.Y_GATE: State.Y_PLUS,
-        Cell.Z_GATE: State.Y_MINUS,
-        Cell.H_GATE: State.Y_MINUS,
-        Cell.S_GATE: State.MINUS,
-        Cell.RESET_0_GATE: State.ZERO,
-        Cell.RESET_1_GATE: State.ONE,
+    QState.Y_PLUS: {
+        Cell.X_GATE: QState.Y_MINUS,
+        Cell.Y_GATE: QState.Y_PLUS,
+        Cell.Z_GATE: QState.Y_MINUS,
+        Cell.H_GATE: QState.Y_MINUS,
+        Cell.S_GATE: QState.MINUS,
+        Cell.RESET_0_GATE: QState.ZERO,
+        Cell.RESET_1_GATE: QState.ONE,
     },
 
-    State.Y_MINUS: {
-        Cell.X_GATE: State.Y_PLUS,
-        Cell.Y_GATE: State.Y_MINUS,
-        Cell.Z_GATE: State.Y_PLUS,
-        Cell.H_GATE: State.Y_PLUS,
-        Cell.S_GATE: State.PLUS,
-        Cell.RESET_0_GATE: State.ZERO,
-        Cell.RESET_1_GATE: State.ONE,
+    QState.Y_MINUS: {
+        Cell.X_GATE: QState.Y_PLUS,
+        Cell.Y_GATE: QState.Y_MINUS,
+        Cell.Z_GATE: QState.Y_PLUS,
+        Cell.H_GATE: QState.Y_PLUS,
+        Cell.S_GATE: QState.PLUS,
+        Cell.RESET_0_GATE: QState.ZERO,
+        Cell.RESET_1_GATE: QState.ONE,
     },
 }

@@ -1,5 +1,5 @@
-from maze import Maze, str_to_array
-from state import State
+from maze import Maze, parse_maze
+from qstate import QState
 
 
 class Level:
@@ -12,24 +12,24 @@ class Level:
         self.start_state = start_state
         self.end_state = end_state
 
-
-def validate_level(level, dimensions):
-    if not level.title or not level.subtitle \
-            or not level.start_state or not level.end_state \
-            or level.maze.grid.shape != dimensions:
-        raise ValueError('invalid level')
+    def validate(self, dimensions):
+        """Checks the state and dimensions of the level."""
+        if not self.title or not self.subtitle \
+                or not self.start_state or not self.end_state \
+                or self.maze.grid.shape != dimensions:
+            raise ValueError('invalid level')
 
 
 def get_levels():
     """Retrieves the list of all levels."""
     dimensions = levels[0].maze.grid.shape
     for level in levels:
-        validate_level(level, dimensions)
+        level.validate(dimensions)
     return levels, dimensions
 
 
 levels = [
-    Level('level 0', "warm-up", State.ZERO, State.PLUS, Maze(str_to_array("""
+    Level('level 0', "warm-up", QState.ZERO, QState.PLUS, Maze(parse_maze("""
     ...................
     ....wwwwwwwwww.....
     ....wA.......w.....
@@ -41,7 +41,7 @@ levels = [
     ....wwwwwwwwww.....
     ...................
     """))),
-    Level('level 1', "warm-up", State.ZERO, State.PLUS, Maze(str_to_array("""
+    Level('level 1', "warm-up", QState.ZERO, QState.PLUS, Maze(parse_maze("""
     ...................
     ...................
     ...................
@@ -53,7 +53,7 @@ levels = [
     ...................
     ...................
     """))),
-    Level('level 2', "don't push it", State.ZERO, State.ZERO, Maze(str_to_array("""
+    Level('level 2', "don't push it", QState.ZERO, QState.ZERO, Maze(parse_maze("""
     ...................
     ...................
     ...................
