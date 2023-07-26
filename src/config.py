@@ -1,12 +1,12 @@
-TITLE = "Bloch Maze"
+HEAD = "BLOCH MAZE"
+ICON = 'assets/icon/icon.svg'
 
-CELL_SIZE = 50
-
-FONT_PATH = 'assets/font/DejaVuSansMono.ttf'
+FONT = 'assets/font/DejaVuSansMono.ttf'
 FONT_SIZE = 23
-BOLD_FONT_PATH = 'assets/font/DejaVuSansMono-Bold.ttf'
+BOLD_FONT = 'assets/font/DejaVuSansMono-Bold.ttf'
 BOLD_FONT_SIZE = 30
 
+CELL_SIZE = 50
 FPS = 60
 MOVE_DELAY = 80
 BANNER_DELAY = 300

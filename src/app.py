@@ -11,14 +11,17 @@ from render import Render
 class App():
     def __init__(self):
         pygame.init()
-        pygame.display.set_caption(TITLE)
-        self.clock = pygame.time.Clock()
+        pygame.display.set_caption(HEAD)
 
+        icon = pygame.image.load(ICON)
+        pygame.display.set_icon(icon)
+
+        self.clock = pygame.time.Clock()
         self.levels, dimensions = get_levels()
         self.current_level_number = 1
 
-        font = pygame.font.Font(FONT_PATH, FONT_SIZE)
-        bfont = pygame.font.Font(BOLD_FONT_PATH, BOLD_FONT_SIZE)
+        font = pygame.font.Font(FONT, FONT_SIZE)
+        bfont = pygame.font.Font(BOLD_FONT, BOLD_FONT_SIZE)
 
         width = dimensions[1] * CELL_SIZE
         height = dimensions[0] * CELL_SIZE
