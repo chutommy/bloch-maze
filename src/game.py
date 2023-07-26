@@ -6,6 +6,8 @@ from transition import transition
 
 
 class GameState(int, Enum):
+    """Represents the state of the game."""
+
     RUNNING = auto()
     JUMP = auto()
     SUCCESS = auto()
@@ -13,6 +15,8 @@ class GameState(int, Enum):
 
 
 class Game:
+    """Represents an instance of a level."""
+
     def __init__(self, level):
         self.level = level
         self.maze = self.level.maze
@@ -30,6 +34,7 @@ class Game:
         self.state = GameState.FAIL
 
     def evaluate(self):
+        """Evaluates the player's position and updates the state of the game."""
         if self.maze[self.player] == Cell.ENTRANCE:
             self.player_state = self.level.start_state
         elif self.maze[self.player] == Cell.EXIT:
@@ -41,6 +46,7 @@ class Game:
             self.player_state = transition(self.player_state, self.maze[self.player])
 
     def move(self, dx, dy):
+        """Updates the player's position."""
         new_coor = Coor(self.player.x + dx, self.player.y + dy)
         if self.maze[new_coor] != Cell.WALL:
             self.player = new_coor

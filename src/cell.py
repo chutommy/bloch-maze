@@ -4,6 +4,8 @@ from config import *
 
 
 class Cell(str, Enum):
+    """Represents a cell tpe in bloch maze."""
+
     NONE = SYMBOL_NONE
     WALL = SYMBOL_WALL
     ENTRANCE = SYMBOL_ENTRANCE

@@ -3,6 +3,7 @@ from state import State
 
 
 def transition(current_state, gate):
+    """Returns the state after applying the given gate on the current state."""
     if gate in TRANSITIONS[current_state]:
         return TRANSITIONS[current_state][gate]
     return current_state

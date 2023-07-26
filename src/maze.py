@@ -9,11 +9,14 @@ def str_to_array(text):
 
 
 class Maze:
+    """Represents a general maze grid."""
+
     def __init__(self, init_grid):
         self.grid = np.array(init_grid, dtype=Cell)
         self.width = self.grid.shape[1]
         self.height = self.grid.shape[0]
 
+        # initialize entrance and exit
         self.entrance = Coor(-1, -1)
         self.exit = Coor(-1, -1)
 

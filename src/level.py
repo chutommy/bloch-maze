@@ -3,6 +3,8 @@ from state import State
 
 
 class Level:
+    """Represents an instance of a game level."""
+
     def __init__(self, title, subtitle, start_state, end_state, maze):
         self.title = title
         self.subtitle = subtitle
@@ -19,6 +21,7 @@ def validate_level(level, dimensions):
 
 
 def get_levels():
+    """Retrieves the list of all levels."""
     dimensions = levels[0].maze.grid.shape
     for level in levels:
         validate_level(level, dimensions)
