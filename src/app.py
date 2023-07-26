@@ -40,11 +40,11 @@ class App:
 
     def display_current_level_header(self):
         self.render.render_banner(f"level {self.current_level_number}", self.levels[self.current_level_number].title)
-        self.wait_response()
+        return self.wait_response()
 
     def display_current_level_end(self):
         self.render.render_banner(f"successfully finished level {self.current_level_number}", WELL_DONE_TXT)
-        self.wait_response()
+        return self.wait_response()
 
     def level_up(self):
         self.current_level_number += 1
@@ -62,12 +62,21 @@ class App:
 
     def run_level(self):
         game = Game(self.levels[self.current_level_number])
-        self.display_current_level_header()
+        key = self.display_current_level_header()
+        self.handle_nav_key(game, key)
+        if game.state == GameState.JUMP:
+            return True
+
         prev_rect = self.render.draw_game(game, game.level.start_state)
+
         while True:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.exit()
+
+            prev_player = game.player
+            if self.handle_keys(game, pygame.key.get_pressed()):
+                prev_rect = self.update_player(game, prev_player, prev_rect)
 
             match game.state:
                 case GameState.JUMP:
@@ -79,10 +88,6 @@ class App:
                     game.__init__(game.level)
                     prev_rect = self.render.draw_game(game, game.level.start_state)
                     pygame.time.wait(FAIL_DELAY)
-
-            prev_player = game.player
-            if self.handle_keys(game, pygame.key.get_pressed()):
-                prev_rect = self.update_player(game, prev_player, prev_rect)
 
             self.clock.tick(FPS)
 
@@ -100,6 +105,15 @@ class App:
                 pass
             self.display_end()
             self.current_level_number = 1
+
+    def handle_nav_key(self, game, key):
+        match key:
+            case pygame.K_p:
+                game.set_jump()
+                self.level_down()
+            case pygame.K_n:
+                game.set_jump()
+                self.level_up()
 
     def handle_keys(self, game, keys):
         if keys[pygame.K_r]:
@@ -137,7 +151,7 @@ class App:
     def wait_response(self, duration=BANNER_DELAY):
         pygame.time.wait(duration)
         pygame.event.clear()
-        self.wait_keypress()
+        return self.wait_keypress()
 
     def wait_keypress(self):
         while True:
@@ -145,4 +159,4 @@ class App:
             if event.type == pygame.QUIT:
                 self.exit()
             elif event.type == pygame.KEYDOWN:
-                break
+                return event.key

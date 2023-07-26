@@ -70,7 +70,6 @@ class Render:
         self.screen.fill(WHITE)
         self.draw_text(END_TEXT, BLACK, (0.5 * w, 0.25 * h), True)
         self.draw_text(RESTART_TEXT, BLACK, (0.5 * w, 0.45 * h))
-        # self.draw_text(NAVIGATION_TEXT, BLACK, (0.5 * w, 0.55 * h))
         self.draw_text(CONTINUE_TEXT, BLACK, (0.5 * w, 0.75 * h))
         pygame.display.update()
 
