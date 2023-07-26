@@ -8,7 +8,7 @@ from level import get_levels
 from render import Render
 
 
-class App():
+class App:
     def __init__(self):
         pygame.init()
         pygame.display.set_caption(HEAD)
@@ -66,7 +66,7 @@ class App():
         game = Game(lvl)
 
         self.display_level_header()
-        prevRect = self.render.game(game, game.level.start_state, game.level.end_state, game.level.start_state)
+        prev_rect = self.render.game(game, game.level.start_state, game.level.end_state, game.level.start_state)
         pygame.display.update()
 
         running = True
@@ -86,30 +86,31 @@ class App():
                 return
 
             if game.state == GameState.FAIL:
-                game.reset()
-                prevRect = self.render.game(game, game.level.start_state, game.level.end_state, game.level.start_state)
+                game.__init__(game.level)
+                prev_rect = self.render.game(game, game.level.start_state, game.level.end_state, game.level.start_state)
                 pygame.display.update()
                 pygame.time.wait(FAIL_DELAY)
 
-            prevCoor = game.player
+            prev_player = game.player
             key = pygame.key.get_pressed()
             if self.handle_key(game, key):
-                prevRect = self.update_player(game, prevCoor, prevRect)
+                prev_rect = self.update_player(game, prev_player, prev_rect)
 
-    def update_player(self, game, prevCoor, prevRect):
-        self.render.cell(game.maze, prevCoor.x, prevCoor.y, game.level.start_state, game.level.end_state)
-        newRect = self.render.player(game.maze, game.player, game.player_state)
+    def update_player(self, game, prev_player, prev_rect):
+        self.render.cell(game.maze, prev_player.x, prev_player.y, game.level.start_state, game.level.end_state)
+        new_rect = self.render.player(game.maze, game.player, game.player_state)
 
-        pygame.display.update(prevRect)
-        pygame.display.update(newRect)
+        pygame.display.update(prev_rect)
+        pygame.display.update(new_rect)
 
-        return newRect
+        return new_rect
 
     def run(self):
         while True:
             self.run_level()
 
-    def exit(self):
+    @staticmethod
+    def exit():
         pygame.quit()
         sys.exit()
 

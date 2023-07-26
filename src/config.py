@@ -1,5 +1,5 @@
 HEAD = "BLOCH MAZE"
-ICON = 'assets/icon/icon.svg'
+ICON = 'assets/icon/icon.png'
 
 FONT = 'assets/font/DejaVuSansMono.ttf'
 FONT_SIZE = 23
@@ -13,8 +13,8 @@ BANNER_DELAY = 300
 FAIL_DELAY = 200
 
 TITLE_TEXT = "BLOCH MAZE"
-CONTROLS_TEXT = "controls:      [w,a,s,d] or [←,↑,↓,→]      "
-NAVIGATION_TEXT = "navigation:    [r]eset / [p]revous / [n]ext"
+CONTROLS_TEXT = "controls:      [w,a,s,d] or [←,↑,↓,→]       "
+NAVIGATION_TEXT = "navigation:    [r]eset / [p]revious / [n]ext"
 CONTINUE_TEXT = "press <any> key to continue"
 
 SYMBOL_NONE = '.'

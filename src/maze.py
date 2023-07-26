@@ -4,8 +4,8 @@ from coor import Coor
 from game import Cell
 
 
-def str_to_array(input):
-    return [list(r.strip()) for r in input.strip().split('\n')]
+def str_to_array(text):
+    return [list(r.strip()) for r in text.strip().split('\n')]
 
 
 class Maze:

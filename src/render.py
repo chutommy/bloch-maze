@@ -8,7 +8,7 @@ BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 
 
-class Render():
+class Render:
     def __init__(self, screen, cell_size, font, bfont):
         self.screen = screen
         self.cell_size = cell_size

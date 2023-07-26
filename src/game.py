@@ -15,9 +15,6 @@ class GameState(int, Enum):
 class Game:
     def __init__(self, level):
         self.level = level
-        self.reset()
-
-    def reset(self):
         self.maze = self.level.maze
         self.player = self.level.maze.entrance
         self.player_state = self.level.start_state
