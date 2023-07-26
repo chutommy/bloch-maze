@@ -5,18 +5,16 @@ from qstate import QState
 class Level:
     """Represents an instance of a game level."""
 
-    def __init__(self, title, subtitle, start_state, end_state, maze):
+    def __init__(self, title, start_state, end_state, maze):
         self.title = title
-        self.subtitle = subtitle
         self.maze = maze
         self.start_state = start_state
         self.end_state = end_state
 
     def validate(self, dimensions):
         """Checks the state and dimensions of the level."""
-        if not self.title or not self.subtitle \
-                or not self.start_state or not self.end_state \
-                or self.maze.grid.shape != dimensions:
+        if not self.title or self.maze.grid.shape != dimensions \
+                or not self.start_state or not self.end_state:
             raise ValueError('invalid level')
 
 
@@ -29,7 +27,7 @@ def get_levels():
 
 
 levels = [
-    Level('level 0', "warm-up", QState.ZERO, QState.PLUS, Maze(parse_maze("""
+    Level("playground", QState.ZERO, QState.PLUS, Maze(parse_maze("""
     ...................
     ....wwwwwwwwww.....
     ....wA.......w.....
@@ -41,7 +39,7 @@ levels = [
     ....wwwwwwwwww.....
     ...................
     """))),
-    Level('level 1', "warm-up", QState.ZERO, QState.PLUS, Maze(parse_maze("""
+    Level("warm-up", QState.ZERO, QState.PLUS, Maze(parse_maze("""
     ...................
     ...................
     ...................
@@ -53,7 +51,7 @@ levels = [
     ...................
     ...................
     """))),
-    Level('level 2', "don't push it", QState.ZERO, QState.ZERO, Maze(parse_maze("""
+    Level("don't rush", QState.ZERO, QState.ZERO, Maze(parse_maze("""
     ...................
     ...................
     ...................
