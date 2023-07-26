@@ -1,9 +1,9 @@
 HEAD = "BLOCH MAZE"
-ICON = 'assets/icon/icon.png'
+ICON = 'assets/icons/icon.png'
 
-FONT = 'assets/font/DejaVuSansMono.ttf'
+FONT = 'assets/fonts/DejaVuSansMono.ttf'
 FONT_SIZE = 23
-BOLD_FONT = 'assets/font/DejaVuSansMono-Bold.ttf'
+BOLD_FONT = 'assets/fonts/DejaVuSansMono-Bold.ttf'
 BOLD_FONT_SIZE = 30
 
 CELL_SIZE = 50
