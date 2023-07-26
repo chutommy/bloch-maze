@@ -106,6 +106,7 @@ class App:
         return new_rect
 
     def run(self):
+        self.display_welcome()
         while True:
             self.run_level()
 
