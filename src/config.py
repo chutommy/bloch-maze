@@ -10,8 +10,8 @@ BANNER_DELAY = 300
 FAIL_DELAY = 200
 
 TITLE_TEXT = "BLOCH MAZE"
-CONTROLS_TEXT = "controls:      [w,a,s,d] or [←,↑,↓,→]   "
-NAVIGATION_TEXT = "navigation:    [r]eset / [b]ack / [n]ext"
+CONTROLS_TEXT = "controls:      [w,a,s,d] or [←,↑,↓,→]      "
+NAVIGATION_TEXT = "navigation:    [r]eset / [p]revous / [n]ext"
 CONTINUE_TEXT = "press <any> key to continue"
 
 SYMBOL_NONE = '.'

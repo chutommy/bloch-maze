@@ -119,7 +119,7 @@ class App():
         if key[pygame.K_r]:
             game.set_fail()
             return False
-        if key[pygame.K_b]:
+        if key[pygame.K_p]:
             game.set_jump()
             self.level_down()
             return False
