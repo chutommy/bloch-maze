@@ -7,7 +7,16 @@ from config import *
 
 def parse_maze(text):
     """Parses a maze string to a 2D grid."""
-    return [list(r.strip()) for r in text.strip().split('\n')]
+    stripped = np.array([list(r.strip()) for r in text.strip().split('\n')], dtype=Cell)
+
+    width_remaining = DIMENSIONS[1] - stripped.shape[1]
+    height_remaining = DIMENSIONS[0] - stripped.shape[0]
+    left = width_remaining // 2
+    right = width_remaining - left
+    top = height_remaining // 2
+    bottom = height_remaining - top
+
+    return np.pad(stripped, ((top, bottom), (left, right)), constant_values='.')
 
 
 class Maze:
