@@ -1,5 +1,6 @@
 from maze import Maze, parse_maze
 from qstate import QState
+from config import *
 
 
 class Level:
@@ -13,8 +14,9 @@ class Level:
 
     def validate(self, dimensions):
         """Checks the state and dimensions of the level."""
-        if not self.title or self.maze.grid.shape != dimensions \
-                or not self.start_state or not self.end_state:
+        if not self.title or not self.start_state or not self.end_state \
+                or self.maze.grid.shape[0] > DIMENSIONS[0] \
+                or self.maze.grid.shape[1] > DIMENSIONS[1]:
             raise ValueError('invalid level')
 
 

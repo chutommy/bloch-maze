@@ -2,6 +2,7 @@ import numpy as np
 
 from coor import Coor
 from game import Cell
+from config import *
 
 
 def parse_maze(text):

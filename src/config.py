@@ -1,24 +1,24 @@
 HEAD = "BLOCH MAZE"
 ICON = 'assets/icons/icon.png'
-
 FONT = 'assets/fonts/DejaVuSansMono.ttf'
-FONT_SIZE = 23
 BOLD_FONT = 'assets/fonts/DejaVuSansMono-Bold.ttf'
+FONT_SIZE = 21
 BOLD_FONT_SIZE = 30
-
-CELL_SIZE = 50
-FPS = 60
-MOVE_DELAY = 80
-BANNER_DELAY = 300
+DIMENSIONS = (15, 30)
+CELL_SIZE = 48
+FPS = 120
+MOVE_DELAY = 100
+BANNER_DELAY = 10
 FAIL_DELAY = 200
-ENDING_DELAY = 200
+ENDING_DELAY = 1000
+SHOW_LEVEL_END = False
 
 TITLE_TEXT = "BLOCH MAZE"
+END_TEXT = "DEAD END"
 CONTROLS_TEXT = "controls:      [w,a,s,d] or [←,↑,↓,→]       "
 NAVIGATION_TEXT = "navigation:    [r]eset / [p]revious / [n]ext"
 CONTINUE_TEXT = "press <any> key to continue"
 WELL_DONE_TXT = 'well done!'
-END_TEXT = "DEAD END"
 RESTART_TEXT = "return to start"
 
 SYMBOL_NONE = '.'

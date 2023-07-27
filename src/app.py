@@ -19,14 +19,14 @@ class App:
         pygame.display.set_icon(icon)
 
         self.clock = pygame.time.Clock()
-        self.levels, dimensions = get_levels()
+        self.levels, _ = get_levels()
         self.current_level_number = 1
 
         font = pygame.font.Font(FONT, FONT_SIZE)
         bfont = pygame.font.Font(BOLD_FONT, BOLD_FONT_SIZE)
 
-        width = dimensions[1] * CELL_SIZE
-        height = dimensions[0] * CELL_SIZE
+        width = DIMENSIONS[1] * CELL_SIZE
+        height = DIMENSIONS[0] * CELL_SIZE
         screen = pygame.display.set_mode((width, height))
         self.render = Render(screen, CELL_SIZE, font, bfont)
 
@@ -82,7 +82,8 @@ class App:
                 case GameState.JUMP:
                     return True
                 case GameState.SUCCESS:
-                    self.display_current_level_end()
+                    if SHOW_LEVEL_END:
+                        self.display_current_level_end()
                     return self.level_up()
                 case GameState.FAIL:
                     game.__init__(game.level)
