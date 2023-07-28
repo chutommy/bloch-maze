@@ -1,6 +1,6 @@
 import pygame
 
-from cell import CELL_COLORS
+from cell import COLORS
 from maze import Cell
 
 BLACK = (0, 0, 0)
@@ -29,7 +29,7 @@ class Render:
 
     def draw_cell(self, maze, x, y, start_state, end_state):
         rect = pygame.Rect(get_rect(x, y, self.cell_size))
-        pygame.draw.rect(self.screen, CELL_COLORS[maze.grid[y, x]], rect)
+        pygame.draw.rect(self.screen, COLORS[maze.grid[y, x]], rect)
         if maze[x, y] == Cell.ENTRANCE:
             self.draw_text(start_state, WHITE, rect.center)
         elif maze[x, y] == Cell.EXIT:
@@ -45,16 +45,16 @@ class Render:
     def draw_player(self, maze, player, current_state):
         rect = pygame.Rect(get_rect(player.x, player.y, self.cell_size))
 
-        cell_color = CELL_COLORS[Cell.NONE]
+        cell_color = COLORS[Cell.NONE]
         state_color = BLACK
         border_color = BLACK
 
         if maze[player] in [Cell.RESET_0_GATE, Cell.RESET_1_GATE]:
-            cell_color = CELL_COLORS[maze[player]]
+            cell_color = COLORS[maze[player]]
             state_color = WHITE
             border_color = BLACK
         elif maze[player] != Cell.NONE:
-            cell_color = CELL_COLORS[maze[player]]
+            cell_color = COLORS[maze[player]]
             state_color = WHITE
             border_color = BLACK
 

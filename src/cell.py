@@ -17,7 +17,7 @@ class Cell(str, enum.Enum):
     RESET_1_GATE = '1'
 
 
-CELL_COLORS = {
+COLORS = {
     Cell.NONE: (255, 255, 255),
     Cell.WALL: (100, 100, 100),
     Cell.ENTRANCE: (50, 205, 50),

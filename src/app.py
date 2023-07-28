@@ -2,7 +2,7 @@ import sys
 
 import pygame
 
-from config import *
+from config import Config
 from game import GameState, Game
 from level import get_levels
 from render import Render
@@ -12,25 +12,25 @@ class App:
     """Handles the whole runtime of the game."""
 
     def __init__(self, config):
-        self.config = Config(config)
+        self.cfg = Config(config)
 
         pygame.init()
-        pygame.display.set_caption(self.config['caption'])
+        pygame.display.set_caption(self.cfg['caption'])
 
-        icon = pygame.image.load(self.config['icons'])
+        icon = pygame.image.load(self.cfg['icons'])
         pygame.display.set_icon(icon)
 
         self.clock = pygame.time.Clock()
-        self.levels = get_levels(self.config['levels'], self.config["dimensions"])
+        self.levels = get_levels(self.cfg['levels'], self.cfg["dimensions"])
         self.current_level_number = 1
 
-        fonts = self.config['fonts']
+        fonts = self.cfg['fonts']
         font = pygame.font.Font(fonts['regular'], fonts['regular_size'])
         bfont = pygame.font.Font(fonts['bold'], fonts['bold_size'])
 
-        cell_size = self.config['cell_size']
-        width = self.config['dimensions', 'width'] * cell_size
-        height = self.config['dimensions', 'height'] * cell_size
+        cell_size = self.cfg['cell_size']
+        width = self.cfg['dimensions', 'width'] * cell_size
+        height = self.cfg['dimensions', 'height'] * cell_size
         screen = pygame.display.set_mode((width, height))
         self.render = Render(screen, cell_size, font, bfont)
 
@@ -64,34 +64,34 @@ class App:
                 case GameState.JUMP:
                     return True
                 case GameState.SUCCESS:
-                    if self.config['show_level_ending']:
+                    if self.cfg['show_level_ending']:
                         self.display_current_level_end()
                     return self.level_up()
                 case GameState.FAIL:
                     game.__init__(game.level)
                     prev_rect = self.render.draw_game(game, game.level.start_state)
-                    pygame.time.wait(self.config['delays', 'fail'])
+                    pygame.time.wait(self.cfg['delays', 'fail'])
 
-            self.clock.tick(self.config['fps'])
+            self.clock.tick(self.cfg['fps'])
 
     def display_welcome(self):
-        self.render.render_welcome(self.config['texts'])
-        self.wait_response(self.config['delays', 'banner'])
+        self.render.render_welcome(self.cfg['texts'])
+        self.wait_response(self.cfg['delays', 'banner'])
 
     def display_end(self):
-        self.render.render_end(self.config['texts'])
-        self.wait_response(self.config['delays', 'ending'])
+        self.render.render_end(self.cfg['texts'])
+        self.wait_response(self.cfg['delays', 'ending'])
 
     def display_current_level_header(self):
         self.render.render_banner(f"level {self.current_level_number}",
                                   self.levels[self.current_level_number].title,
-                                  self.config['texts'])
-        return self.wait_response(self.config['delays', 'banner'])
+                                  self.cfg['texts'])
+        return self.wait_response(self.cfg['delays', 'banner'])
 
     def display_current_level_end(self):
         self.render.render_banner(f"successfully finished level {self.current_level_number}",
-                                  self.config['texts', 'well_done'], self.config['texts'])
-        return self.wait_response(self.config['delays', 'banner'])
+                                  self.cfg['texts', 'well_done'], self.cfg['texts'])
+        return self.wait_response(self.cfg['delays', 'banner'])
 
     def level_up(self):
         self.current_level_number += 1
@@ -146,7 +146,7 @@ class App:
                 game.move_right()
             if keys[pygame.K_LEFT] or keys[pygame.K_a]:
                 game.move_left()
-            pygame.time.wait(self.config['delays', 'move'])
+            pygame.time.wait(self.cfg['delays', 'move'])
             return True
 
         return False
