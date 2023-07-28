@@ -2,10 +2,10 @@ import sys
 
 import pygame
 
-from config import Config
-from game import GameState, Game
-from level import get_levels
-from render import Render
+from src.config import Config
+from src.game import GameState, Game
+from src.level import get_levels
+from src.render import Render
 
 
 class App:

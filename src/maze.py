@@ -1,7 +1,7 @@
 import numpy as np
 
-from coor import Coor
-from game import Cell
+from src.coor import Coor
+from src.game import Cell
 
 
 def parse_maze(text, dimensions):

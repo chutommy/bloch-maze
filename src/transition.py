@@ -1,5 +1,5 @@
-from cell import Cell
-from qstate import QState
+from src.cell import Cell
+from src.qstate import QState
 
 
 def transition(current_state, gate):

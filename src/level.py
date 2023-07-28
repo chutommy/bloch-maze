@@ -1,6 +1,6 @@
 import os
 
-from maze import parse_maze
+from src.maze import parse_maze
 
 
 class Level:

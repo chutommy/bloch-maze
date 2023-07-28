@@ -1,7 +1,7 @@
 import pygame
 
-from cell import COLORS
-from maze import Cell
+from src.cell import COLORS
+from src.maze import Cell
 
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)

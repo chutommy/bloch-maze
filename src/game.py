@@ -1,8 +1,8 @@
 import enum
 
-from cell import Cell
-from coor import Coor
-from transition import transition
+from src.cell import Cell
+from src.coor import Coor
+from src.transition import transition
 
 
 class GameState(int, enum.Enum):
