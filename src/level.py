@@ -1,7 +1,6 @@
 import os
 
-from maze import Maze, parse_maze
-from qstate import QState
+from maze import parse_maze
 from config import *
 
 

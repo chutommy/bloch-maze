@@ -1,9 +1,9 @@
-from enum import Enum
+import enum
 
 from config import *
 
 
-class Cell(str, Enum):
+class Cell(str, enum.Enum):
     """Represents a cell tpe in bloch maze."""
 
     NONE = SYMBOL_NONE

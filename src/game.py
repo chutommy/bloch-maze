@@ -1,17 +1,16 @@
-from enum import Enum, auto
-
+import enum
 from cell import Cell
 from coor import Coor
 from transition import transition
 
 
-class GameState(int, Enum):
+class GameState(int, enum.Enum):
     """Represents the state of the game."""
 
-    RUNNING = auto()
-    JUMP = auto()
-    SUCCESS = auto()
-    FAIL = auto()
+    RUNNING = enum.auto()
+    JUMP = enum.auto()
+    SUCCESS = enum.auto()
+    FAIL = enum.auto()
 
 
 class Game:

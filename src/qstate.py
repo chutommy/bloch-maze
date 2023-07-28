@@ -1,9 +1,9 @@
-from enum import Enum
+import enum
 
 from config import *
 
 
-class QState(str, Enum):
+class QState(str, enum.Enum):
     """Lists the basic quantum states."""
 
     ZERO = STATE_SYMBOL_ZERO
