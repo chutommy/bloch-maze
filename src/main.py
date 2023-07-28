@@ -1,6 +1,6 @@
 import os
 
-# TODO: remove main file, unite ' and "
+# TODO: remove main file
 
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1'
 

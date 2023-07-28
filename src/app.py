@@ -21,7 +21,7 @@ class App:
         pygame.display.set_icon(icon)
 
         self.clock = pygame.time.Clock()
-        self.levels = get_levels(self.cfg['levels'], self.cfg["dimensions"])
+        self.levels = get_levels(self.cfg['levels'], self.cfg['dimensions'])
         self.current_level_number = 1
 
         fonts = self.cfg['fonts']
@@ -83,13 +83,13 @@ class App:
         self.wait_response(self.cfg['delays', 'ending'])
 
     def display_current_level_header(self):
-        self.render.render_banner(f"level {self.current_level_number}",
+        self.render.render_banner(f'level {self.current_level_number}',
                                   self.levels[self.current_level_number].title,
                                   self.cfg['texts'])
         return self.wait_response(self.cfg['delays', 'banner'])
 
     def display_current_level_end(self):
-        self.render.render_banner(f"successfully finished level {self.current_level_number}",
+        self.render.render_banner(f'successfully finished level {self.current_level_number}',
                                   self.cfg['texts', 'well_done'], self.cfg['texts'])
         return self.wait_response(self.cfg['delays', 'banner'])
 
