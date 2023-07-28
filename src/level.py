@@ -27,13 +27,13 @@ def get_levels():
     level_files = os.listdir(LEVELS)
     level_files.sort()
     for file in level_files:
-        levels.append(load_level(os.path.join(LEVELS, file)))
+        levels.append(load_level_from_file(os.path.join(LEVELS, file)))
     for level in levels:
         level.validate()
     return levels
 
 
-def load_level(path):
+def load_level_from_file(path):
     with open(path, 'r') as file:
         title = file.readline().strip().lower()
         start_state, end_state = file.readline().strip().replace(' ', '').split('->')
