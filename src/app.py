@@ -19,7 +19,7 @@ class App:
         pygame.display.set_icon(icon)
 
         self.clock = pygame.time.Clock()
-        self.levels, _ = get_levels()
+        self.levels = get_levels()
         self.current_level_number = 1
 
         font = pygame.font.Font(FONT, FONT_SIZE)

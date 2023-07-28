@@ -1,4 +1,5 @@
 HEAD = "BLOCH MAZE"
+LEVELS = 'assets/levels'
 ICON = 'assets/icons/icon.png'
 FONT = 'assets/fonts/DejaVuSansMono.ttf'
 BOLD_FONT = 'assets/fonts/DejaVuSansMono-Bold.ttf'
@@ -22,7 +23,7 @@ WELL_DONE_TXT = 'well done!'
 RESTART_TEXT = "return to start"
 
 SYMBOL_NONE = '.'
-SYMBOL_WALL = 'w'
+SYMBOL_WALL = 'W'
 SYMBOL_ENTRANCE = 'A'
 SYMBOL_EXIT = 'B'
 SYMBOL_X_GATE = 'X'

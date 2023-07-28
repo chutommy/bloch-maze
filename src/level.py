@@ -1,3 +1,5 @@
+import os
+
 from maze import Maze, parse_maze
 from qstate import QState
 from config import *
@@ -12,7 +14,7 @@ class Level:
         self.start_state = start_state
         self.end_state = end_state
 
-    def validate(self, dimensions):
+    def validate(self):
         """Checks the state and dimensions of the level."""
         if not self.title or not self.start_state or not self.end_state \
                 or self.maze.grid.shape[0] > DIMENSIONS[0] \
@@ -22,41 +24,19 @@ class Level:
 
 def get_levels():
     """Retrieves the list of all levels."""
-    dimensions = levels[0].maze.grid.shape
+    levels = []
+    level_files = os.listdir(LEVELS)
+    level_files.sort()
+    for file in level_files:
+        levels.append(load_level(os.path.join(LEVELS, file)))
     for level in levels:
-        level.validate(dimensions)
-    return levels, dimensions
+        level.validate()
+    return levels
 
 
-levels = [
-    Level("playground", QState.ZERO, QState.PLUS, Maze(parse_maze("""
-    
-    wwwwwwwwww
-    wA.......w
-    w..X.Y.Z.w
-    w........w
-    w..H.S...w
-    w..0.1...w
-    w.......Bw
-    wwwwwwwwww
-    
-    """))),
-    Level("warm-up", QState.ZERO, QState.PLUS, Maze(parse_maze("""
-    
-    wwwwwwwwww
-    wA...H..Bw
-    wwwwwwwwww
-    
-    """))),
-    Level("don't rush", QState.ZERO, QState.ZERO, Maze(parse_maze("""
-    
-    wwwwwwwwww
-    wA...H..Bw
-    wwww.www.w
-    ...w.w.w.w
-    ...w.www.w
-    ...w.....w
-    ...wwwwwww
-
-"""))),
-]
+def load_level(path):
+    with open(path, 'r') as file:
+        title = file.readline().strip().lower()
+        start_state, end_state = file.readline().strip().replace(' ', '').split('->')
+        maze = parse_maze(file.read())
+        return Level(title, start_state, end_state, maze)
