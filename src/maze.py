@@ -1,8 +1,8 @@
 import numpy as np
 
+from config import *
 from coor import Coor
 from game import Cell
-from config import *
 
 
 def parse_maze(text):

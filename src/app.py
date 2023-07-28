@@ -1,4 +1,5 @@
 import sys
+
 import pygame
 
 from config import *

@@ -1,7 +1,7 @@
 import os
 
-from maze import parse_maze
 from config import *
+from maze import parse_maze
 
 
 class Level:
