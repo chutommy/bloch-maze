@@ -1,7 +1,6 @@
 import pygame
 
 from cell import CELL_COLORS
-from config import *
 from maze import Cell
 
 BLACK = (0, 0, 0)
@@ -69,29 +68,29 @@ class Render:
         pygame.display.update()
         return rect
 
-    def render_welcome(self):
+    def render_welcome(self, texts):
         w, h = self.screen.get_width(), self.screen.get_height()
         self.screen.fill(WHITE)
-        self.draw_text(TITLE_TEXT, BLACK, (0.5 * w, 0.25 * h), True)
-        self.draw_text(CONTROLS_TEXT, BLACK, (0.5 * w, 0.45 * h))
-        self.draw_text(NAVIGATION_TEXT, BLACK, (0.5 * w, 0.55 * h))
-        self.draw_text(CONTINUE_TEXT, BLACK, (0.5 * w, 0.75 * h))
+        self.draw_text(texts['title'], BLACK, (0.5 * w, 0.25 * h), True)
+        self.draw_text(texts['controls'], BLACK, (0.5 * w, 0.45 * h))
+        self.draw_text(texts['navigation'], BLACK, (0.5 * w, 0.55 * h))
+        self.draw_text(texts['continue'], BLACK, (0.5 * w, 0.75 * h))
         pygame.display.update()
 
-    def render_end(self):
+    def render_end(self, texts):
         w, h = self.screen.get_width(), self.screen.get_height()
         self.screen.fill(WHITE)
-        self.draw_text(END_TEXT, BLACK, (0.5 * w, 0.25 * h), True)
-        self.draw_text(RESTART_TEXT, BLACK, (0.5 * w, 0.45 * h))
-        self.draw_text(CONTINUE_TEXT, BLACK, (0.5 * w, 0.75 * h))
+        self.draw_text(texts['end'], BLACK, (0.5 * w, 0.25 * h), True)
+        self.draw_text(texts['restart'], BLACK, (0.5 * w, 0.45 * h))
+        self.draw_text(texts['continue'], BLACK, (0.5 * w, 0.75 * h))
         pygame.display.update()
 
-    def render_banner(self, header, title):
+    def render_banner(self, header, caption, texts):
         w, h = self.screen.get_width(), self.screen.get_height()
         self.screen.fill(WHITE)
         self.draw_text(header, (0, 0, 0), (0.5 * w, 0.25 * h), True)
-        self.draw_text(title, (0, 0, 0), (0.5 * w, 0.4 * h))
-        self.draw_text(CONTINUE_TEXT, (0, 0, 0), (0.5 * w, 0.75 * h))
+        self.draw_text(caption, (0, 0, 0), (0.5 * w, 0.4 * h))
+        self.draw_text(texts['continue'], (0, 0, 0), (0.5 * w, 0.75 * h))
         pygame.display.update()
 
 

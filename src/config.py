@@ -1,54 +1,17 @@
-HEAD = "BLOCH MAZE"
-LEVELS = 'assets/levels'
-ICON = 'assets/icons/icon.png'
-FONT = 'assets/fonts/DejaVuSansMono.ttf'
-BOLD_FONT = 'assets/fonts/DejaVuSansMono-Bold.ttf'
-FONT_SIZE = 21
-BOLD_FONT_SIZE = 30
-DIMENSIONS = (15, 30)
-CELL_SIZE = 48
-FPS = 120
-MOVE_DELAY = 100
-BANNER_DELAY = 10
-FAIL_DELAY = 200
-ENDING_DELAY = 1000
-SHOW_LEVEL_END = False
+import json
 
-TITLE_TEXT = "BLOCH MAZE"
-END_TEXT = "DEAD END"
-CONTROLS_TEXT = "controls:      [w,a,s,d] or [←,↑,↓,→]       "
-NAVIGATION_TEXT = "navigation:    [r]eset / [p]revious / [n]ext"
-CONTINUE_TEXT = "press <any> key to continue"
-WELL_DONE_TXT = 'well done!'
-RESTART_TEXT = "return to start"
 
-SYMBOL_NONE = '.'
-SYMBOL_WALL = 'W'
-SYMBOL_ENTRANCE = 'A'
-SYMBOL_EXIT = 'B'
-SYMBOL_X_GATE = 'X'
-SYMBOL_Y_GATE = 'Y'
-SYMBOL_Z_GATE = 'Z'
-SYMBOL_H_GATE = 'H'
-SYMBOL_S_GATE = 'S'
-SYMBOL_RESET_0_GATE = '0'
-SYMBOL_RESET_1_GATE = '1'
+class Config:
 
-STATE_SYMBOL_ZERO = '❘0❭'
-STATE_SYMBOL_ONE = '❘1❭'
-STATE_SYMBOL_PLUS = '❘+❭'
-STATE_SYMBOL_MINUS = '❘-❭'
-STATE_SYMBOL_Y_PLUS = '❘R❭'
-STATE_SYMBOL_Y_MINUS = '❘L❭'
+    def __init__(self, path):
+        with open(path, 'r') as file:
+            self.data = json.loads(file.read())
 
-CELL_COLOR_NONE = (255, 255, 255)
-CELL_COLOR_WALL = (100, 100, 100)
-CELL_COLOR_ENTRANCE = (50, 205, 50)
-CELL_COLOR_EXIT = (255, 49, 49)
-CELL_COLOR_X_GATE = (0, 170, 255)
-CELL_COLOR_Y_GATE = (0, 153, 115)
-CELL_COLOR_Z_GATE = (255, 102, 102)
-CELL_COLOR_H_GATE = (255, 153, 0)
-CELL_COLOR_S_GATE = (204, 153, 255)
-CELL_COLOR_RESET_0_GATE = (0, 0, 0)
-CELL_COLOR_RESET_1_GATE = (0, 0, 0)
+    def __getitem__(self, item):
+        if not isinstance(item, tuple):
+            return self.data[item]
+
+        ret = self.data
+        for key in list(item):
+            ret = ret[key]
+        return ret

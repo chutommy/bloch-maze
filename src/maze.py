@@ -1,17 +1,16 @@
 import numpy as np
 
-from config import *
 from coor import Coor
 from game import Cell
 
 
-def parse_maze(text):
+def parse_maze(text, dimensions):
     """Parses a maze string to a 2D grid."""
     stripped = [list(r.strip()) for r in text.strip().upper().split('\n')]
     np_stripped = np.array(stripped, dtype=Cell)
 
-    width_remaining = DIMENSIONS[1] - np_stripped.shape[1]
-    height_remaining = DIMENSIONS[0] - np_stripped.shape[0]
+    width_remaining = dimensions['width'] - np_stripped.shape[1]
+    height_remaining = dimensions['height'] - np_stripped.shape[0]
     left = width_remaining // 2
     right = width_remaining - left
     top = height_remaining // 2

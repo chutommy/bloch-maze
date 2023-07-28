@@ -1,34 +1,32 @@
 import enum
 
-from config import *
-
 
 class Cell(str, enum.Enum):
     """Represents a cell tpe in bloch maze."""
 
-    NONE = SYMBOL_NONE
-    WALL = SYMBOL_WALL
-    ENTRANCE = SYMBOL_ENTRANCE
-    EXIT = SYMBOL_EXIT
-    X_GATE = SYMBOL_X_GATE
-    Y_GATE = SYMBOL_Y_GATE
-    Z_GATE = SYMBOL_Z_GATE
-    H_GATE = SYMBOL_H_GATE
-    S_GATE = SYMBOL_S_GATE
-    RESET_0_GATE = SYMBOL_RESET_0_GATE
-    RESET_1_GATE = SYMBOL_RESET_1_GATE
+    NONE = '.'
+    WALL = 'W'
+    ENTRANCE = 'A'
+    EXIT = 'B'
+    X_GATE = 'X'
+    Y_GATE = 'Y'
+    Z_GATE = 'Z'
+    H_GATE = 'H'
+    S_GATE = 'S'
+    RESET_0_GATE = '0'
+    RESET_1_GATE = '1'
 
 
 CELL_COLORS = {
-    Cell.NONE: CELL_COLOR_NONE,
-    Cell.WALL: CELL_COLOR_WALL,
-    Cell.ENTRANCE: CELL_COLOR_ENTRANCE,
-    Cell.EXIT: CELL_COLOR_EXIT,
-    Cell.X_GATE: CELL_COLOR_X_GATE,
-    Cell.Y_GATE: CELL_COLOR_Y_GATE,
-    Cell.Z_GATE: CELL_COLOR_Z_GATE,
-    Cell.H_GATE: CELL_COLOR_H_GATE,
-    Cell.S_GATE: CELL_COLOR_S_GATE,
-    Cell.RESET_0_GATE: CELL_COLOR_RESET_0_GATE,
-    Cell.RESET_1_GATE: CELL_COLOR_RESET_1_GATE,
+    Cell.NONE: (255, 255, 255),
+    Cell.WALL: (100, 100, 100),
+    Cell.ENTRANCE: (50, 205, 50),
+    Cell.EXIT: (255, 49, 49),
+    Cell.X_GATE: (0, 170, 255),
+    Cell.Y_GATE: (0, 153, 115),
+    Cell.Z_GATE: (255, 102, 102),
+    Cell.H_GATE: (255, 153, 0),
+    Cell.S_GATE: (204, 153, 255),
+    Cell.RESET_0_GATE: (0, 0, 0),
+    Cell.RESET_1_GATE: (0, 0, 0),
 }
