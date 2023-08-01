@@ -3,7 +3,7 @@
 TARGET_NAME="bloch-maze"
 TARGET="dist"
 
-declare -a COMPONENTS=("assets" "config.json" "LICENSE" "requirements.txt")
+declare -a COMPONENTS=("assets" "config.json" "LICENSE")
 
 cxfreeze main.py --compress --target-name "${TARGET_NAME}" --target-dir "${TARGET}"
 
