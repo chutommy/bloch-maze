@@ -4,7 +4,7 @@ import json
 class Config:
 
     def __init__(self, path):
-        with open(path, 'r') as file:
+        with open(path, 'r', encoding="utf8") as file:
             self.data = json.loads(file.read())
 
     def __getitem__(self, item):

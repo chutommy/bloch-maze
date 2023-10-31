@@ -33,7 +33,7 @@ def get_levels(dir, dimensions):
 
 
 def load_level_from_file(path, dimensions):
-    with open(path, 'r') as file:
+    with open(path, 'r', encoding="utf8") as file:
         title = file.readline().strip().lower()
         start_state, end_state = file.readline().strip().replace(' ', '').split('->')
         maze = parse_maze(file.read(), dimensions)
